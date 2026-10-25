@@ -20,7 +20,6 @@ export default defineConfig([
     },
   },
   {
-    // shadcn/ui generated components export variants alongside components
     files: ['src/components/ui/**/*.tsx'],
     rules: {
       'react-refresh/only-export-components': 'off',
