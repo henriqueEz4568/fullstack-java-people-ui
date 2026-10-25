@@ -38,6 +38,41 @@ Copie `.env.example` para `.env` para mudar a porta ou apontar para outra API.
 
 Ao trocar a porta, inclua a nova origem no `CORS_ALLOWED_ORIGINS` da API (ex.: `http://localhost:3000`).
 
+## Docker
+
+A imagem é gerada em duas etapas: o build roda em Node 24 e o resultado é servido por um nginx sem privilégios de root, com fallback para o `index.html` e cache longo nos arquivos de `assets/`.
+
+```bash
+docker compose up -d --build
+```
+
+O `compose.yaml` lê as mesmas variáveis do `.env`:
+
+| Variável       | Padrão                  | Uso |
+|----------------|-------------------------|-----|
+| `PORT`         | `5173`                  | Porta publicada no host |
+| `VITE_API_URL` | `http://localhost:8080` | Endereço da API, embutido no build |
+
+Como o `VITE_API_URL` é usado pelo navegador e fixado no momento do build, ele deve apontar para um endereço acessível pela máquina de quem abre a página. Ao alterá-lo, rode o `docker compose up` com `--build` de novo.
+
+A API precisa liberar a origem da interface no CORS, por exemplo `CORS_ALLOWED_ORIGINS=http://localhost:5173`.
+
+Sem o Compose:
+
+```bash
+docker build --build-arg VITE_API_URL=http://localhost:8080 -t people-ui .
+```
+
+```bash
+docker run -d -p 5173:8080 people-ui
+```
+
+Para parar:
+
+```bash
+docker compose down
+```
+
 ## Funcionalidades
 
 | Tela | Rota consumida |
