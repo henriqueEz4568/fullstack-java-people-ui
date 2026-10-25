@@ -62,7 +62,13 @@ export function DeletePersonDialog({ person }: { person: Person }) {
   return (
     <AlertDialog open={open} onOpenChange={handleOpenChange}>
       <AlertDialogTrigger asChild>
-        <Button variant="ghost" size="icon-sm" aria-label={`Excluir ${fullName}`} title="Excluir">
+        <Button
+          variant="ghost"
+          size="icon-sm"
+          aria-label={`Excluir ${fullName}`}
+          title="Excluir"
+          className="text-muted-foreground hover:bg-destructive/10 hover:text-destructive"
+        >
           <Trash2 />
         </Button>
       </AlertDialogTrigger>

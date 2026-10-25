@@ -1,4 +1,5 @@
 import { RefreshCw, TriangleAlert, Users } from 'lucide-react'
+import { IconBadge } from '@/components/icon-badge'
 import { StateMessage } from '@/components/state-message'
 import { Button } from '@/components/ui/button'
 import { Card, CardAction, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
@@ -52,10 +53,15 @@ export function PeopleSection() {
   const { data: people, isFetching, refetch } = usePeople()
 
   return (
-    <Card>
+    <Card className="shadow-sm">
       <CardHeader>
-        <CardTitle>Pessoas</CardTitle>
-        <CardDescription>{people ? describeCount(people.length) : 'Lista de todos os cadastros'}</CardDescription>
+        <div className="flex items-center gap-3">
+          <IconBadge icon={Users} />
+          <div className="flex flex-col gap-1">
+            <CardTitle>Pessoas</CardTitle>
+            <CardDescription>{people ? describeCount(people.length) : 'Lista de todos os cadastros'}</CardDescription>
+          </div>
+        </div>
         <CardAction className="flex gap-2">
           <Button
             variant="outline"

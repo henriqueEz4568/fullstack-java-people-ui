@@ -1,6 +1,7 @@
 import { Loader2, Search, SearchX, TriangleAlert, X } from 'lucide-react'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
+import { IconBadge } from '@/components/icon-badge'
 import { StateMessage } from '@/components/state-message'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
@@ -90,10 +91,15 @@ export function DocumentSearch() {
   const { isFetching } = usePersonByDocument(searchedDocument)
 
   return (
-    <Card>
+    <Card className="shadow-sm">
       <CardHeader>
-        <CardTitle>Buscar por documento</CardTitle>
-        <CardDescription>Consulte um cadastro pelo documento de {DOCUMENT_LENGTH} dígitos.</CardDescription>
+        <div className="flex items-center gap-3">
+          <IconBadge icon={Search} />
+          <div className="flex flex-col gap-1">
+            <CardTitle>Buscar por documento</CardTitle>
+            <CardDescription>Consulte um cadastro pelo documento de {DOCUMENT_LENGTH} dígitos.</CardDescription>
+          </div>
+        </div>
       </CardHeader>
       <CardContent className="flex flex-col gap-4">
         <DocumentSearchForm

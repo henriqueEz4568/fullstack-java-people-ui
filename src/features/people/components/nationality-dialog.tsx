@@ -46,7 +46,7 @@ function NationalityResult({ document }: { document: string }) {
   return (
     <div className="flex flex-col gap-4">
       <div className="flex items-center gap-3">
-        <span className="text-4xl" aria-hidden>
+        <span className="flex size-14 items-center justify-center rounded-full bg-accent text-3xl" aria-hidden>
           {countryFlag(nationality.countryCode)}
         </span>
         <div className="flex flex-col">
@@ -72,7 +72,13 @@ export function NationalityDialog({ person }: { person: Person }) {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button variant="ghost" size="icon-sm" aria-label={`Ver nacionalidade de ${fullName}`} title="Nacionalidade">
+        <Button
+          variant="ghost"
+          size="icon-sm"
+          aria-label={`Ver nacionalidade de ${fullName}`}
+          title="Nacionalidade"
+          className="text-muted-foreground hover:text-primary"
+        >
           <Globe />
         </Button>
       </DialogTrigger>

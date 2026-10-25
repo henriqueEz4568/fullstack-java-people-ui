@@ -13,6 +13,7 @@ import {
 } from '@/components/ui/dialog'
 import { ApiKeyForm } from '@/features/api-key/components/api-key-form'
 import { useApiKey } from '@/features/api-key/use-api-key'
+import { cn } from '@/lib/utils'
 
 const VISIBLE_KEY_CHARS = 4
 
@@ -40,7 +41,10 @@ export function ApiKeyDialog() {
         <Button variant="outline">
           <KeyRound />
           API key
-          <Badge variant={apiKey ? 'secondary' : 'outline'}>{apiKey ? 'Configurada' : 'Pendente'}</Badge>
+          <Badge variant="secondary" className="gap-1.5">
+            <span className={cn('size-1.5 rounded-full', apiKey ? 'bg-emerald-500' : 'bg-amber-500')} />
+            {apiKey ? 'Configurada' : 'Pendente'}
+          </Badge>
         </Button>
       </DialogTrigger>
       <DialogContent>
