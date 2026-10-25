@@ -1,23 +1,16 @@
-import { toast } from 'sonner'
-import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Toaster } from '@/components/ui/sonner'
+import { AppHeader } from '@/components/app-header'
+import { DocumentSearch } from '@/features/people/components/document-search'
+import { PeopleSection } from '@/features/people/components/people-section'
 
 function App() {
   return (
-    <main className="flex min-h-svh items-center justify-center p-4">
-      <Card className="w-full max-w-sm">
-        <CardHeader>
-          <CardTitle>People</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <Button onClick={() => toast.success('shadcn/ui funcionando')}>
-            Testar
-          </Button>
-        </CardContent>
-      </Card>
-      <Toaster />
-    </main>
+    <div className="min-h-svh bg-background">
+      <AppHeader />
+      <main className="mx-auto flex w-full max-w-5xl flex-col gap-6 px-4 py-8">
+        <DocumentSearch />
+        <PeopleSection />
+      </main>
+    </div>
   )
 }
 
